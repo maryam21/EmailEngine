@@ -4,7 +4,7 @@ var html_dir = './html/';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile('index.html', { root: './html' })
+  res.sendFile('index.html', { root: './public' })
 });
 
 module.exports = router;
