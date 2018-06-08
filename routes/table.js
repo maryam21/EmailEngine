@@ -5,8 +5,6 @@ var app = express();
 
 var instances;
 var id;
-class MyEmitter extends EventEmitter {};
-const myEmitter = new MyEmitter();
 
 router.get('/', function(req, res, next) {
   deploy_instance();
