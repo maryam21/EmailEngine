@@ -8,7 +8,8 @@ var id;
 
 router.get('/', function(req, res, next) {
   //deploy_instance();
-  list_instances()
+  var promise = list_instances();
+  //promise.then()
   res.render('table-datatable.handlebars', {instances: instances})
 });
 
@@ -20,10 +21,13 @@ function deploy_instance(){
 };
 
 function list_instances(){
-  request.get('http://109.236.88.80:3003/relays/list', (err, res, body) => {
-    if(err){ return console.log(err); };
-    console.log(res.body);
-  })
+  return new Promise(function(resolve, reject){
+    request.get('http://109.236.88.80:3003/relays/list', (err, res, body) => {
+      if(err){ reject(err); 
+      }else { resolve(JSON.parse(body)); }
+      console.log(res.body);
+    })
+   });
 };
 
 module.exports = router;
