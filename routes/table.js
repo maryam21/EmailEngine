@@ -7,7 +7,8 @@ var instances;
 var id;
 
 router.get('/', function(req, res, next) {
-  deploy_instance();
+  //deploy_instance();
+  list_instances()
   res.render('table-datatable.handlebars', {instances: instances})
 });
 
@@ -16,6 +17,13 @@ function deploy_instance(){
   if(err){ return console.log(err); };
   instances = res.body;
   id = res.body.id})
+};
+
+function list_instances(){
+  request.get('http://109.236.88.80:3003/relays/list', (err, res, body) => {
+    if(err){ return console.log(err); };
+    console.log(res.body);
+  })
 };
 
 module.exports = router;
