@@ -387,16 +387,16 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th></th>
-                                            <th class="min-tablet"></th>
-                                            <th class="min-tablet"></th>
+                                            <th>Host Id</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{#each instances}}
                                         <tr>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{this.dns.hostname}}</td>
+                                            <td>{{this.id}}</td>
                                         </tr>
+                                        {{/each}}
                                     </tbody>
                                 </table>
                             </div>
