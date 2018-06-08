@@ -6,7 +6,6 @@ var app = express();
 var instances;
 
 router.get('/', function(req, res, next) {
-  //deploy_instance();
   var promise = list_instances();
   promise.then(function(result){
     instances = result;
@@ -34,10 +33,10 @@ function list_instances(){
 };
 
 router.post('/', function(req, res){  
-  request.post('http://109.236.88.80:3003/relays/c3cb09ae-3a3d-4c46-bcd6-c1c8d80bea8d/setup/dns/hostname', (err, res, body) => {
+  request.post({ url: 'http://109.236.88.80:3003/relays/c3cb09ae-3a3d-4c46-bcd6-c1c8d80bea8d/setup/dns/hostname', 
+                 headers: { "domain": "myinstance220.com"} }, (err, res, body) => {
     if(err){ return console.log(err); };
-    console.log(res.body);
-    domains = res.body;
+    console.log(JSON.parse(body));
   });
   res.redirect('/table');
 });
