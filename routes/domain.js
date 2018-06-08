@@ -1,8 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 
 router.post('/', function(req, res){  
-  console.log('ooooy');
+  request.post('http://109.236.88.80:3003/relays/c3cb09ae-3a3d-4c46-bcd6-c1c8d80bea8d/setup/dns/hostname', (err, res, body) => {
+    if(err){ return console.log(err); };
+    console.log(res.body);
+  });
 });
 
 module.exports = router;
