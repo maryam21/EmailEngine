@@ -34,7 +34,7 @@ function list_instances(){
 
 router.post('/', function(req, res){  
   request.post({ url: 'http://109.236.88.80:3003/relays/c3cb09ae-3a3d-4c46-bcd6-c1c8d80bea8d/setup/dns/hostname', 
-                 headers: { "domain": "myinstance220.com"} }, (err, res, body) => {
+                 body: JSON.stringify({ "domain": "myinstance220.com"}) }, (err, res, body) => {
     if(err){ return console.log(err); };
     console.log(JSON.parse(body));
   });
