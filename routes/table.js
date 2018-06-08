@@ -4,14 +4,13 @@ var request = require('request');
 var app = express();
 
 var instances;
-var id;
 
 router.get('/', function(req, res, next) {
   //deploy_instance();
   var promise = list_instances();
   promise.then(function(result){
     instances = result;
-    console.log(instances);
+    //console.log(instances);
   }, function(err){
     console.log(err);
   })
@@ -21,8 +20,7 @@ router.get('/', function(req, res, next) {
 function deploy_instance(){
   request.post('http://109.236.88.80:3003/relays/deploy', (err, res, body) => {
   if(err){ return console.log(err); };
-  instances = res.body;
-  id = res.body.id})
+  })
 };
 
 function list_instances(){
@@ -34,5 +32,14 @@ function list_instances(){
     })
    });
 };
+
+router.post('/', function(req, res){  
+  request.post('http://109.236.88.80:3003/relays/c3cb09ae-3a3d-4c46-bcd6-c1c8d80bea8d/setup/dns/hostname', (err, res, body) => {
+    if(err){ return console.log(err); };
+    console.log(res.body);
+    domains = res.body;
+  });
+  res.redirect('/table');
+});
 
 module.exports = router;
