@@ -17,14 +17,14 @@ router.get('/', function(req, res, next) {
 });
 
 function deploy_instance(){
-  request.post('http://109.236.88.80:3003/relays/deploy', (err, res, body) => {
+  request.post('', (err, res, body) => {
   if(err){ return console.log(err); };
   })
 };
 
 function list_instances(){
   return new Promise(function(resolve, reject){
-    request.get('http://109.236.88.80:3003/relays/list', (err, res, body) => {
+    request.get('', (err, res, body) => {
       if(err){ reject(err); 
       }else { resolve(JSON.parse(body)); }
       //console.log(res.body);
@@ -33,8 +33,8 @@ function list_instances(){
 };
 
 router.post('/', function(req, res){  
-  request.post({ url: 'http://109.236.88.80:3003/relays/c3cb09ae-3a3d-4c46-bcd6-c1c8d80bea8d/setup/dns/hostname', 
-                 body: JSON.stringify({ "domain": "myinstance220.com"}) }, (err, res, body) => {
+  request.post({ url: '', 
+                 body: JSON.stringify({ "domain": ".com"}) }, (err, res, body) => {
     if(err){ return console.log(err); };
     console.log(JSON.parse(body));
   });
